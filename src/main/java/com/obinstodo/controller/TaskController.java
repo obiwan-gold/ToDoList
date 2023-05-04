@@ -1,11 +1,7 @@
 package com.obinstodo.controller;
 
 import com.obinstodo.model.Task;
-import lombok.Builder;
-
-
 import java.util.Date;
-
 
 public class TaskController {
 
@@ -15,6 +11,6 @@ public class TaskController {
                 .description(description)
                 .dueDate(dueDate)
                 .build();
-        // save the task to the database or do something else with it
+        // save the task to an arr for now, db later
     }
 }
