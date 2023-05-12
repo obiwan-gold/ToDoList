@@ -9,8 +9,12 @@ import java.util.Date;
 @Builder
 public class Task {
     private int id;
-    private String title;
+//    private String title;
     private String description;
-    private Date dueDate;
-    private boolean completed;
+//    private Date dueDate;
+//    private boolean completed;
+
+    public Task(int id, String description) {
+        // Constructor logic here
+    }
 }

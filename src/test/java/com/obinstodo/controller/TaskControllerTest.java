@@ -11,12 +11,7 @@ class TaskControllerTest {
 
     public Task task;
     public TaskController taskController;
-    @BeforeEach
-    void setUp() {
-        task = Task.builder().build();
-        taskController = new TaskController();
-        taskController.setTask(task);
-    }
+
     @Test
     void createTask() {
         String title = "Test Task";
