@@ -1,18 +1,20 @@
-package com.obinstodo.controller;
+package com.obinstodo.todolist.controller;
 
-import com.obinstodo.model.Task;
-import com.obinstodo.service.TaskService;
+import com.obinstodo.todolist.model.Task;
+import com.obinstodo.todolist.service.TaskService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-@RestController("api")
+@RestController
+@RequestMapping("/api")
 public class TaskController {
 
     @Getter
@@ -27,7 +29,14 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public ResponseEntity<List<Task>> getAllTasks() {
-        List<Task> tasks = taskService.getAllTasks();
+        List<Task> tasks = new ArrayList<>();
+
+        // Add some sample tasks to the list
+        Task task1 = new Task(1, "Task 1");
+        Task task2 = new Task(2, "Task 2");
+        tasks.add(task1);
+        tasks.add(task2);
+
         return ResponseEntity.ok(tasks);
     }
 

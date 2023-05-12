@@ -1,4 +1,4 @@
-package com.obinstodo.model;
+package com.obinstodo.todolist.model;
 
 import lombok.Builder;
 import lombok.Data;

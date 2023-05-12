@@ -1,6 +1,6 @@
-package com.obinstodo.service;
+package com.obinstodo.todolist.service;
 
-import com.obinstodo.model.Task;
+import com.obinstodo.todolist.model.Task;
 
 import java.util.List;
 
