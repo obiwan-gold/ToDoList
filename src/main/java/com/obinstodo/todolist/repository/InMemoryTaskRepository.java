@@ -17,8 +17,13 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     public void initializeTasks() {
+        Task task1 = new Task(1, "Description 1");
+        Task task2 = new Task(2, "Description 2");
+        Task task3 = new Task(3, "Description 3");
 
-        // Initialize tasks
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
     }
 
     @Override
