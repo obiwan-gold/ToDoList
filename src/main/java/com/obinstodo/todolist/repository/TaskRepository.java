@@ -5,10 +5,11 @@ import com.obinstodo.todolist.model.Task;
 import java.util.List;
 
 public interface TaskRepository {
-    void addTask(String task);
-    void updateTask(String task);
-    void deleteTask(String task);
+    void addTask(Task task);
+    void updateTask(Task task);
+    void deleteTask(String taskId);
     List<Task> getAllTasks();
 
     void initializeTasks();
 }
+
