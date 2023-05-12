@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class DefaultTaskService implements TaskService {
+  
     private final List<Task> tasks;
     private final TaskRepository taskRepository;
 
@@ -34,7 +35,7 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public void addTask(Task task) {
-        taskRepository.addTask(task);
+      taskRepository.addTask(task);
     }
 
     @Override
@@ -47,4 +48,3 @@ public class DefaultTaskService implements TaskService {
         taskRepository.deleteTask(taskId);
     }
 }
-
