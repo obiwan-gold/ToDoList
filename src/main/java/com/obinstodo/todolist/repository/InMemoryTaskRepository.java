@@ -8,6 +8,7 @@ import java.util.List;
 
 @Component
 public class InMemoryTaskRepository implements TaskRepository {
+
     private final List<Task> tasks;
 
     public InMemoryTaskRepository() {
@@ -16,6 +17,7 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     public void initializeTasks() {
+
         // Initialize tasks
     }
 
@@ -39,7 +41,3 @@ public class InMemoryTaskRepository implements TaskRepository {
         return tasks;
     }
 }
-
-
-
-
