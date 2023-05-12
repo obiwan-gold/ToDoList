@@ -31,12 +31,6 @@ public class TaskController {
     public ResponseEntity<List<Task>> getAllTasks() {
         List<Task> tasks = new ArrayList<>();
 
-        // Add some sample tasks to the list
-        Task task1 = new Task(1, "Task 1");
-        Task task2 = new Task(2, "Task 2");
-        tasks.add(task1);
-        tasks.add(task2);
-
         return ResponseEntity.ok(tasks);
     }
 
