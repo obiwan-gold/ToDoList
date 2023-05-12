@@ -1,6 +1,6 @@
-package com.obinstodo.repository;
+package com.obinstodo.todolist.repository;
 
-import com.obinstodo.model.Task;
+import com.obinstodo.todolist.model.Task;
 
 import java.util.List;
 
@@ -9,4 +9,6 @@ public interface TaskRepository {
     void updateTask(String task);
     void deleteTask(String task);
     List<Task> getAllTasks();
+
+    void initializeTasks();
 }

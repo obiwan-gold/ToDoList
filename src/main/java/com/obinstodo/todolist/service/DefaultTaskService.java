@@ -1,10 +1,17 @@
-package com.obinstodo.service;
+package com.obinstodo.todolist.service;
 
-import com.obinstodo.model.Task;
+import com.obinstodo.todolist.model.Task;
+import com.obinstodo.todolist.repository.TaskRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DefaultTaskService implements TaskService {
+
+    public DefaultTaskService(TaskRepository taskRepository) {
+        taskRepository.initializeTasks();
+    }
 
     @Override
     public List<Task> getAllTasks() {

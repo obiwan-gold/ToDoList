@@ -1,10 +1,12 @@
-package com.obinstodo.repository;
+package com.obinstodo.todolist.repository;
 
-import com.obinstodo.model.Task;
+import com.obinstodo.todolist.model.Task;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class InMemoryTaskRepository implements TaskRepository {
 
     private final List<Task> tasks;
@@ -12,11 +14,9 @@ public class InMemoryTaskRepository implements TaskRepository {
     public InMemoryTaskRepository() {
         tasks = new ArrayList<>();
         initializeTasks();
-
-
     }
 
-    private void initializeTasks() {
+    public void initializeTasks() {
         Task task1 = new Task(1, "Description 1");
         Task task2 = new Task(2, "Description 2");
         Task task3 = new Task(3, "Description 3");
