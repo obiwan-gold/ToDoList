@@ -32,7 +32,7 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void deleteTask(String taskId) {
+    public void deleteTask(int taskId) {
         taskRepository.deleteTask(taskId);
     }
 }

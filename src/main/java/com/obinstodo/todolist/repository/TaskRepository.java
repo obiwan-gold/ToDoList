@@ -8,7 +8,7 @@ public interface TaskRepository {
 
     void addTask(Task task);
     void updateTask(Task task);
-    void deleteTask(String taskId);
+    void deleteTask(int taskId);
     List<Task> getAllTasks();
   
     void initializeTasks();
