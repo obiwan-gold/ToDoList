@@ -2,14 +2,14 @@ package com.obinstodo.todolist.repository;
 
 import com.obinstodo.todolist.model.Task;
 
-import java.util.List;
+import java.util.Map;
 
 public interface TaskRepository {
 
-    List<Task> getAllTasks();
+    Map<Integer, Task> getAllTasks();
     Task getTaskById(int taskId);
     void addTask(Task task);
     void updateTask(Task task);
-    void deleteTask(int taskId);
+    void deleteTaskById(int taskId);
     void initializeTasks();
 }

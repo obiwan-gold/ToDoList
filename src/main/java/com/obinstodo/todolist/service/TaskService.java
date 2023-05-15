@@ -2,12 +2,13 @@ package com.obinstodo.todolist.service;
 
 import com.obinstodo.todolist.model.Task;
 
-import java.util.List;
+import java.util.Map;
+
 
 public interface TaskService {
-    List<Task> getAllTasks();
+    Map<Integer, Task> getAllTasks();
     Task getTaskById(int taskId);
     void addTask(Task task);
     void updateTask(Task task);
-    void deleteTask(int taskId);
+    void deleteTaskById(int taskId);
 }
