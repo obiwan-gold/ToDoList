@@ -4,16 +4,16 @@ import com.obinstodo.todolist.model.Task;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class InMemoryTaskRepository implements TaskRepository {
 
-    private final List<Task> tasks;
+    private final Map<Integer, Task> tasks;
 
     public InMemoryTaskRepository() {
-        tasks = new ArrayList<>();
+        tasks = new HashMap<>();
         initializeTasks();
     }
 
@@ -22,13 +22,13 @@ public class InMemoryTaskRepository implements TaskRepository {
         Task task1 = new Task(1, "Title 1", "Description 1", LocalDate.of(2023, 5, 15), false);
         Task task2 = new Task(2, "Title 2", "Description 2", LocalDate.of(2023, 5, 15), false);
         Task task3 = new Task(3, "Title 3", "Description 3", LocalDate.of(2023, 5, 15), false);
-        tasks.add(task1);
-        tasks.add(task2);
-        tasks.add(task3);
+        tasks.put(task1.getTaskId(), task1);
+        tasks.put(task2.getTaskId(), task2);
+        tasks.put(task3.getTaskId(), task3);
     }
 
     @Override
-    public List<Task> getAllTasks() {
+    public Map<Integer, Task> getAllTasks() {
         return tasks;
     }
 
@@ -48,7 +48,7 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public void deleteTask(int taskId) {
+    public void deleteTaskById(int taskId) {
         // Implement the logic to delete a task from the repository
     }
 
