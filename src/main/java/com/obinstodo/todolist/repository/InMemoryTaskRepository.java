@@ -34,7 +34,7 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public Task getTaskById(int taskId) {
-        return tasks.get(taskId);
+            return tasks.get(taskId);
     }
 
     @Override
@@ -48,10 +48,9 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public boolean deleteTaskById(int taskId) {
+    public void deleteTaskById(int taskId) {
         // Implement the logic to delete a task from the repository
-        Task taskToDelete = tasks.remove(taskId);
-        return taskToDelete != null;
+        tasks.remove(taskId);
     }
 
 

@@ -23,6 +23,7 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public Task getTaskById(int taskId) {
+        // Task not found, return null
         return taskRepository.getTaskById(taskId);
     }
 

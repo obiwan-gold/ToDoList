@@ -1,5 +1,6 @@
 package com.obinstodo.todolist.controller;
 
+import com.obinstodo.todolist.exception.TaskNotFoundException;
 import com.obinstodo.todolist.model.Task;
 import com.obinstodo.todolist.service.TaskService;
 
@@ -30,7 +31,12 @@ public class TaskController {
 
     @GetMapping("/tasks/{taskId}")
     public ResponseEntity<Task> getTaskById(@PathVariable int taskId) {
-        return ResponseEntity.ok(taskService.getTaskById(taskId));
+        Task task = taskService.getTaskById(taskId);
+        if (task != null) {
+            return ResponseEntity.ok(task);
+        } else {
+            throw new TaskNotFoundException("Task not found for ID: " + taskId);
+        }
     }
 
     @DeleteMapping("/tasks/{taskId}")
