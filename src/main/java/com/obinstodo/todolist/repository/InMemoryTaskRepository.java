@@ -28,6 +28,16 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
+    public List<Task> getAllTasks() {
+        return tasks;
+    }
+
+    @Override
+    public Task getTaskById(int taskId) {
+        return tasks.get(taskId);
+    }
+
+    @Override
     public void addTask(Task task) {
         // Implement the logic to add a task to the repository
     }
@@ -42,8 +52,5 @@ public class InMemoryTaskRepository implements TaskRepository {
         // Implement the logic to delete a task from the repository
     }
 
-    @Override
-    public List<Task> getAllTasks() {
-        return tasks;
-    }
+
 }
