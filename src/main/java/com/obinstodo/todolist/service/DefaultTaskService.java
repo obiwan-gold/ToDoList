@@ -5,8 +5,6 @@ import com.obinstodo.todolist.repository.TaskRepository;
 
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -39,7 +37,13 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void deleteTaskById(int taskId) {
-        taskRepository.deleteTaskById(taskId);
+    public boolean deleteTaskById(int taskId) {
+        Task task = taskRepository.getTaskById(taskId);
+        if (task != null) {
+            taskRepository.deleteTaskById(taskId);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
