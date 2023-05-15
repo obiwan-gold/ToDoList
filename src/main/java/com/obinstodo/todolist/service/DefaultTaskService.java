@@ -22,6 +22,11 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
+    public Task getTaskById(int taskId) {
+        return taskRepository.getTaskById(taskId);
+    }
+
+    @Override
     public void addTask(Task task) {
       taskRepository.addTask(task);
     }

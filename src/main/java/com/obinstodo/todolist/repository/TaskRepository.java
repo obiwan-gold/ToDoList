@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface TaskRepository {
 
+    List<Task> getAllTasks();
+    Task getTaskById(int taskId);
     void addTask(Task task);
     void updateTask(Task task);
     void deleteTask(int taskId);
-    List<Task> getAllTasks();
-  
     void initializeTasks();
 }
