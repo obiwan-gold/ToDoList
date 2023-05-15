@@ -11,5 +11,5 @@ public interface TaskRepository {
     Task getTaskById(int taskId);
     void addTask(Task task);
     void updateTask(Task task);
-    boolean deleteTaskById(int taskId);
+    void deleteTaskById(int taskId);
 }
