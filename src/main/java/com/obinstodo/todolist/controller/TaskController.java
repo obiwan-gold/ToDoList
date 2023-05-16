@@ -1,7 +1,8 @@
 package com.obinstodo.todolist.controller;
 
-import com.obinstodo.todolist.exception.TaskNotFoundException;
+import com.obinstodo.todolist.model.ErrorResponse;
 import com.obinstodo.todolist.model.Task;
+import com.obinstodo.todolist.response.ApiResponse;
 import com.obinstodo.todolist.service.TaskService;
 
 import org.springframework.http.HttpStatus;
@@ -25,28 +26,46 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity<Map<Integer, Task>> getAllTasks() {
-        return ResponseEntity.ok(taskService.getAllTasks());
+    public ResponseEntity<ApiResponse<Map<Integer, Task>>> getAllTasks() {
+        Map<Integer, Task> tasks = taskService.getAllTasks();
+
+        if (tasks.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse<>(false, null, new ErrorResponse("Task not found")));
+        }
+
+        return ResponseEntity.ok(new ApiResponse<>(true, tasks, null));
     }
 
     @GetMapping("/tasks/{taskId}")
-    public ResponseEntity<Task> getTaskById(@PathVariable int taskId) {
-        Task task = taskService.getTaskById(taskId);
-        if (task != null) {
-            return ResponseEntity.ok(task);
-        } else {
-            throw new TaskNotFoundException("Task not found for ID: " + taskId);
+    public ResponseEntity<ApiResponse<Task>> getTaskById(@PathVariable int taskId) {
+        ApiResponse<Task> apiResponse = validateTaskFound(taskService.getTaskById(taskId), taskId);
+
+        if (!apiResponse.isSuccess()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(apiResponse);
         }
+        return ResponseEntity.ok(apiResponse);
     }
 
     @DeleteMapping("/tasks/{taskId}")
     public ResponseEntity<String> deleteTaskById(@PathVariable int taskId) {
-            boolean isDeleted = taskService.deleteTaskById(taskId);
-            return isDeleted
-                    ? ResponseEntity.ok("Task deleted successfully")
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
 
+        boolean isDeleted = taskService.deleteTaskById(taskId);
+
+        if (!isDeleted) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
+        }
+        return ResponseEntity.ok("Task deleted successfully");
     }
 
+    private ApiResponse<Task> validateTaskFound(Task task, int taskId) {
+        if (task == null) {
+            return new ApiResponse<>(false, null, new ErrorResponse("Task not found for ID: " + taskId));
+        }
+        return new ApiResponse<>(true, task, null);
+    }
 
 }
