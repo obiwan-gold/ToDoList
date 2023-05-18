@@ -6,11 +6,10 @@ import java.util.Map;
 
 
 public interface TaskService {
+    int getTaskMapSize();
     Map<Integer, Task> getAllTasks();
     Task getTaskById(int taskId);
-    void createTask(Task task);
-
+    boolean createTask(Task task);
     boolean updateTaskById(int taskId, Task updatedTask);
-
     boolean deleteTaskById(int taskId);
 }

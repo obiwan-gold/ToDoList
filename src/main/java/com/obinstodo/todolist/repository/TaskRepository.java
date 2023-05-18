@@ -7,10 +7,10 @@ import java.util.Map;
 public interface TaskRepository {
     void initializeTasks();
     boolean checkTaskExistsById(int taskId);
+    int getTaskMapSize();
     Map<Integer, Task> getAllTasks();
     Task getTaskById(int taskId);
     void createTask(Task task);
     void updateTask(Task task);
-
     void deleteTaskById(int taskId);
 }

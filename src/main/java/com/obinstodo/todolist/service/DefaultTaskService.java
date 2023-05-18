@@ -16,6 +16,13 @@ public class DefaultTaskService implements TaskService {
         this.taskRepository = taskRepository;
     }
 
+    public int getTaskMapSize(){
+        return taskRepository.getTaskMapSize();
+    }
+    private int generateTaskId() {
+        return getTaskMapSize() + 1;
+    }
+
     @Override
     public Map<Integer, Task> getAllTasks() {
         return taskRepository.getAllTasks();
@@ -28,8 +35,21 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void createTask(Task task) {
-      taskRepository.createTask(task);
+    public boolean createTask(Task newTask) {
+        // Generate a unique task ID
+        int taskId = generateTaskId();
+
+        Task taskToCreate =
+            Task.builder()
+                .taskId(taskId)
+                .title(newTask.getTitle())
+                .description(newTask.getDescription())
+                .dueDate(newTask.getDueDate())
+                .completed(newTask.isCompleted())
+                .build();
+
+        taskRepository.createTask(taskToCreate);
+        return taskRepository.checkTaskExistsById(taskToCreate.getTaskId());
     }
 
     @Override

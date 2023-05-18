@@ -32,6 +32,9 @@ public class InMemoryTaskRepository implements TaskRepository {
         return tasks.containsKey(taskId);
     }
 
+    public int getTaskMapSize(){
+        return tasks.size();
+    }
     @Override
     public Map<Integer, Task> getAllTasks() {
         return tasks;
@@ -43,9 +46,11 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public void createTask(Task task) {
+    public void createTask(Task newTask) {
         // Implement the logic to add a task to the repository
-        tasks.put(task.getTaskId(), task);
+        if (!tasks.containsKey(newTask.getTaskId())) {
+            tasks.put(newTask.getTaskId(), newTask);
+        }
     }
 
     @Override
