@@ -28,6 +28,11 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
+    public boolean checkTaskExistsById(int taskId){
+        return tasks.containsKey(taskId);
+    }
+
+    @Override
     public Map<Integer, Task> getAllTasks() {
         return tasks;
     }
@@ -38,13 +43,14 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public void addTask(Task task) {
+    public void createTask(Task task) {
         // Implement the logic to add a task to the repository
+        tasks.put(task.getTaskId(), task);
     }
 
     @Override
-    public void updateTask(Task task) {
-        // Implement the logic to update a task in the repository
+    public void updateTask(Task updatedTask) {
+        tasks.put(updatedTask.getTaskId(), updatedTask);
     }
 
     @Override
