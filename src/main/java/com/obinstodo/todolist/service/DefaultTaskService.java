@@ -80,12 +80,11 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public boolean deleteTaskById(int taskId) {
-        Task task = taskRepository.getTaskById(taskId);
-        if (task != null) {
-            taskRepository.deleteTaskById(taskId);
+        // Check task exists
+        if (!taskRepository.checkTaskExistsById(taskId)){
             return true;
-        } else {
-            return false;
         }
+        // Retrieve task && delete task
+        return taskRepository.deleteTaskById(taskId);
     }
 }
