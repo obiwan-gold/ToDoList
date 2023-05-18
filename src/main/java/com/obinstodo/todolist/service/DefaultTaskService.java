@@ -28,13 +28,34 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void addTask(Task task) {
-      taskRepository.addTask(task);
+    public void createTask(Task task) {
+      taskRepository.createTask(task);
     }
 
     @Override
-    public void updateTask(Task task) {
-        taskRepository.updateTask(task);
+    public boolean updateTaskById(int taskId, Task updatedTask) {
+        // Check task exists before doing anything
+        if (!taskRepository.checkTaskExistsById(taskId)) {
+            return false;
+        }
+        // Passes, grab task that exists
+        Task existingTask = getTaskById(taskId);
+        // Update the fields only if they are not null in the updatedTask object
+        if (updatedTask.getTitle() != null) {
+            existingTask.setTitle(updatedTask.getTitle());
+        }
+        if (updatedTask.getDescription() != null) {
+            existingTask.setDescription(updatedTask.getDescription());
+        }
+        if (updatedTask.getDueDate() != null) {
+            existingTask.setDueDate(updatedTask.getDueDate());
+        }
+        // isCompleted is a boolean value, therefore comparison for null doesn't exist
+        if (updatedTask.isCompleted() != existingTask.isCompleted()) {
+            existingTask.setCompleted(updatedTask.isCompleted());
+        }
+        taskRepository.updateTask(existingTask);
+        return true;
     }
 
     @Override
