@@ -1,0 +1,23 @@
+name: Continuous Integration
+on:
+  push:
+    branches-ignore:
+      - main # Validate changes in different branches
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17.0.6
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build and test
+        run: mvn clean install
+
+      - name: Deploy to production
+        # Add deployment steps specific to your deployment process here
