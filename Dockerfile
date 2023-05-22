@@ -1,22 +1,20 @@
-FROM openjdk:17.0.6
+FROM eclipse-temurin:17-jammy
 
+# Install dependencies
+RUN apt-get update && apt-get install -y maven
+
+# Set the working directory
 WORKDIR /app
 
-# Copy the application code and pom.xml file
+# Copy the application code
 COPY . .
 
-# Install Maven and build the application
-RUN apt-get update && \
-    apt-get install -y maven && \
-    mvn clean package -DskipTests
+# Build the application
+RUN mvn clean install -Dmaven.test.skip
 
-# Exclude Lombok during the build
-RUN mvn clean install -Dmaven.test.skip=true
-
+# Expose the port
 EXPOSE 8080
 
-# Healthcheck to ensure container is healthy
-HEALTHCHECK --interval=30s --timeout=5s \
-  CMD wget -qO- http://localhost:8080/actuator/health || exit 1
+# Run the application
+CMD ["java", "-jar", "target/todolist-1.0.0.jar"]
 
-CMD ["java", "-jar", "target/todolist.jar"]
