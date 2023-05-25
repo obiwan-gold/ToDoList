@@ -6,6 +6,7 @@ import java.util.Map;
 
 
 public interface TaskService {
+    // For generating taskID
     int getTaskMapSize();
     Map<Integer, Task> getAllTasks();
     Task getTaskById(int taskId);
