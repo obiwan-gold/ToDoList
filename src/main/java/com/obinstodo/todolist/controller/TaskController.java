@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/todo")
+@RequestMapping("/api")
 public class TaskController {
 
     private final TaskService taskService;
