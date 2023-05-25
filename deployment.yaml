@@ -1,0 +1,22 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolist
+  template:
+    metadata:
+      labels:
+        app: todolist
+    spec:
+      containers:
+        - name: todolist
+          image: eu.gcr.io/plucky-day-387611/todolist:1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENVIRONMENT
+              value: "production"
