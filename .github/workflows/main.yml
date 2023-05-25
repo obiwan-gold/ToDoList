@@ -1,17 +1,24 @@
-name: Continuous Integration
+name: CI
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 
 on:
   pull_request:
     branches:
       - main
-
+  push:
+    branches:
+      - main
 jobs:
-  build:
+ build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set-up Eclipse Temurin JDK 17
-      - uses: actions/setup-java@v2.5.1
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-  
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3.9.0
+      with:
+        # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
+        java-version: 17
+        # Java distribution. See the list of supported distributions in README file
+        distribution: temurin
+        
+    - name: Check out code
+      uses: actions/checkout@v3
